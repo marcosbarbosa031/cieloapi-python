@@ -1,5 +1,3 @@
-# cieloapi-python
-
 # config
 
 ``` bash
