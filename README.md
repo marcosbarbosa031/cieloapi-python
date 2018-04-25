@@ -1,6 +1,6 @@
 # cieloapi-python
 
-#config
+# config
 
 ``` bash
 import os
