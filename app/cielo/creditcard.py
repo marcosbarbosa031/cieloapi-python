@@ -63,7 +63,7 @@ class Creditcard(object):
         'ReasonMessage': response_capture_sale['ReasonMessage']
       }
       # response = response_capture_sale
-    else: # Venda não foi criada. Imprime o Status e a Mensagem de retorno
+    else: # Venda nao foi criada. Imprime o Status e a Mensagem de retorno
       # response = response_create_sale
       response = {
         'Status': response_create_sale['Payment']['Status'],
