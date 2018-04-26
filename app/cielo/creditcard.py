@@ -46,6 +46,9 @@ class Creditcard(object):
     # Criar a venda
     response_create_sale = self.cielo_ecommerce.create_sale(self.sale)
 
+    payment = {
+      'Tid': response_create_sale['Payment']['Tid']
+    }
     # Verifica se a venda foi criada com sucesso
     if(response_create_sale['Payment']['Status'] == 1):
       # Com a venda criada na Cielo, ja temos o ID do pagamento, TID e demais
@@ -58,16 +61,22 @@ class Creditcard(object):
 
       # Retorna o Status e as Mensagens de retorno
       response = {
-        'Status': response_capture_sale['Status'],
-        'ReturnMessage': response_capture_sale['ReturnMessage'],
-        'ReasonMessage': response_capture_sale['ReasonMessage']
+        'return': {
+          'Status': response_capture_sale['Status'],
+          'ReturnMessage': response_capture_sale['ReturnMessage'],
+          'ReasonMessage': response_capture_sale['ReasonMessage']
+        },
+        'payment': payment
       }
       # response = response_capture_sale
     else: # Venda nao foi criada. Imprime o Status e a Mensagem de retorno
       # response = response_create_sale
       response = {
-        'Status': response_create_sale['Payment']['Status'],
-        'ReturnMessage': response_create_sale['Payment']['ReturnMessage']
+        'return': {
+          'Status': response_create_sale['Payment']['Status'],
+          'ReturnMessage': response_create_sale['Payment']['ReturnMessage']
+        },
+        'payment': payment
       }
     return response
 

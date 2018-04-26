@@ -15,13 +15,13 @@ def create_app(config_name):
   def creditcard():
     if not request.json:
       return abort(500)
-    value = request.json.get('value')
+    value = request.json.get('value_brl')
     order_id = request.json.get('order_id')
     name = request.json.get('name')
     cvc = request.json.get('cvc')
     brand = request.json.get('brand')
     expr_date = request.json.get('expr_date')
-    card_n = request.json.get('card_n')
+    card_n = request.json.get('card_number')
     card_holder = request.json.get('card_holder')
 
     c = Creditcard(value, order_id, name, cvc, brand, expr_date, card_n, card_holder)
